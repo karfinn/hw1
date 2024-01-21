@@ -125,16 +125,14 @@ CREATE TABLE movies (
 
 CREATE TABLE actors (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    first_actor_name TEXT,
-    last_actor_name TEXT
+    name TEXT,
 );
 
 CREATE TABLE topcasts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_id INTEGER,
     actor_id INTEGER,
-    first_character_name TEXT,
-    last_character_name TEXT
+    character_name TEXT,
 );
 
 CREATE TABLE studios (
@@ -168,6 +166,12 @@ VALUES(
     "PG-13"
 );
 
+INSERT INTO studios (name)
+VALUES(
+    "Warner Bros."
+);
+
+
 -- Prints a header for the movies output
 .print "Movies"
 .print "======"
@@ -175,6 +179,10 @@ VALUES(
 
 -- The SQL statement for the movies output
 -- TODO!
+
+SELECT movies.title, movies.year_released, movies.MPAA_rating, studios.name
+FROM movies INNER JOIN studios WHERE movies.studio_id=studios.id
+WHERE studios.id=1;
 
 
 
