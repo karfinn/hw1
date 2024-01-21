@@ -145,25 +145,28 @@ CREATE TABLE studios (
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 
-INSERT INTO movies (title, year_released, MPAA_rating)
+INSERT INTO movies (title, year_released, MPAA_rating,studio_id) 
 VALUES(
     "Batman Begins",
     2005,
-    "PG-13"
+    "PG-13",
+    1
 );
 
-INSERT INTO movies (title, year_released, MPAA_rating)
+INSERT INTO movies (title, year_released, MPAA_rating, studio_id)
 VALUES(
     "The Dark Knight",
     2008,
-    "PG-13"
+    "PG-13",
+    1
 );
 
-INSERT INTO movies (title, year_released, MPAA_rating)
+INSERT INTO movies (title, year_released, MPAA_rating,studio_id)
 VALUES(
     "The Dark Night Rises",
     2012,
-    "PG-13"
+    "PG-13",
+    1
 );
 
 INSERT INTO studios (name)
@@ -171,8 +174,65 @@ VALUES(
     "Warner Bros."
 );
 
+INSERT INTO actors (name)
+VALUES(
+    "Christian Bale"
+);
+
+INSERT INTO actors (name)
+VALUES(
+    "Michael Caine"
+);
+
+INSERT INTO actors (name)
+VALUES(
+    "Liam Neeson"
+);
+
+INSERT INTO actors (name)
+VALUES(
+    "Katie Holmes"
+);
+
+INSERT INTO actors (name)
+VALUES(
+    "Gary Oldman"
+);
+
+INSERT INTO actors (name)
+VALUES(
+    "Heath Ledger"
+);
+
+INSERT INTO actors (name)
+VALUES(
+    "Aaron Eckhart"
+);
+
+INSERT INTO actors (name)
+VALUES(
+    "Maggie Gyllenhaal"
+);
+
+INSERT INTO actors (name)
+VALUES(
+    "Tom Hardy"
+);
+
+
+INSERT INTO actors (name)
+VALUES(
+    "Joseph Gordon-Levitt"
+);
+
+INSERT INTO actors (name)
+VALUES(
+    "Anne Hathaway"
+);
+
 
 -- Prints a header for the movies output
+.print ""
 .print "Movies"
 .print "======"
 .print ""
@@ -181,9 +241,8 @@ VALUES(
 -- TODO!
 
 SELECT movies.title, movies.year_released, movies.MPAA_rating, studios.name
-FROM movies INNER JOIN studios WHERE movies.studio_id=studios.id
-WHERE studios.id=1;
-
+FROM movies INNER JOIN studios ON movies.studio_id=studios.id
+;
 
 
 -- Prints a header for the cast output
