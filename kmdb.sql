@@ -107,7 +107,8 @@
 -- TODO!
 
 DROP TABLE movies;  
-DROP TABLE actors; 
+DROP TABLE actors;
+DROP TABLE characters; 
 DROP TABLE topcasts;
 DROP TABLE studios;
 
@@ -125,14 +126,20 @@ CREATE TABLE movies (
 
 CREATE TABLE actors (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
+    name TEXT
 );
+
+CREATE TABLE characters (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+
 
 CREATE TABLE topcasts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_id INTEGER,
     actor_id INTEGER,
-    character_name TEXT,
+    character_id INTEGER
 );
 
 CREATE TABLE studios (
@@ -161,7 +168,7 @@ VALUES(
     1
 );
 
-INSERT INTO movies (title, year_released, MPAA_rating,studio_id)
+INSERT INTO movies (title, year_released, MPAA_rating, studio_id)
 VALUES(
     "The Dark Night Rises",
     2012,
@@ -230,6 +237,130 @@ VALUES(
     "Anne Hathaway"
 );
 
+INSERT INTO characters (name)
+VALUES(
+    "Bruce Wayne"
+);
+
+INSERT INTO characters (name)
+VALUES(
+    "Alfred"
+);
+
+INSERT INTO characters (name)
+VALUES(
+    "Ra's Al Ghul"
+);
+
+INSERT INTO characters (name)
+VALUES(
+    "Rachel Dawes"
+);
+
+INSERT INTO characters (name)
+VALUES(
+    "Comissioner Gordon"
+);
+
+INSERT INTO characters (name)
+VALUES(
+    "Joker"
+);
+
+INSERT INTO characters (name)
+VALUES(
+    "Harvey Dent"
+);
+
+INSERT INTO characters (name)
+VALUES(
+    "Bane"
+);
+
+INSERT INTO characters (name)
+VALUES(
+    "John Blake"
+);
+
+INSERT INTO characters (name)
+VALUES(
+    "Selina Kyle"
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    1,1,1
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    1,2,2
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    1,3,3
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    1,4,4
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    1,5,5
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    2,1,1
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    2,6,6
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    2,7,7
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    2,2,2
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    2,8,4
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    3,1,1
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    3,5,5
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    3,9,8
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    3,10,9
+);
+
+INSERT INTO topcasts (movie_id,actor_id,character_id)
+VALUES(
+    3,11,10
+);
 
 -- Prints a header for the movies output
 .print ""
@@ -241,8 +372,8 @@ VALUES(
 -- TODO!
 
 SELECT movies.title, movies.year_released, movies.MPAA_rating, studios.name
-FROM movies INNER JOIN studios ON movies.studio_id=studios.id
-;
+FROM studios INNER JOIN movies ON studios.id = movies.studio_id;
+
 
 
 -- Prints a header for the cast output
@@ -254,4 +385,11 @@ FROM movies INNER JOIN studios ON movies.studio_id=studios.id
 
 -- The SQL statement for the cast output
 -- TODO!
+
+SELECT movies.title, actors.name, characters.name
+FROM topcasts INNER JOIN movies ON movies.id = topcasts.movie_id
+INNER JOIN actors ON actors.id = topcasts.actor_id
+INNER JOIN characters ON characters.id = topcasts.character_id;
+
+
 
